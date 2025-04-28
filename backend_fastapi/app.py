@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
+import models.common
 
 app = FastAPI(
     title="Calendar App Backend",

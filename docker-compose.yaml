@@ -1,29 +1,68 @@
 services:
 
   #フロントエンドコンテナ
-  calender-app-frontend:
+  fe:
+    container_name: calender-app-frontend
     build:
       context: .
       dockerfile: ./.dockerfiles/Dockerfile.frontend
+    env_file:
+        - .env
     ports:
-      - "5173:5173"
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     expose:
-      - "5173"
+      - "${FRONTEND_PORT}"
     tty: true
     volumes:
       - ./frontend_react:/frontend_react
       - /frontend_react/node_modules
+    networks:
+      - default
   
   #バックエンドコンテナ
-  calender-app-backend:
+  be:
+    container_name: calender-app-backend
     build:
       context: .
       dockerfile: ./.dockerfiles/Dockerfile.backend
+    env_file:
+        - .env
     ports:
-      - "8173:8173"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     expose:
-      - "8173"
+      - "${BACKEND_PORT}"
     tty: true
     volumes:
       - ./backend_fastapi:/backend_fastapi
+    networks:
+      - default
+    depends_on:
+      - db
+
+  #データベースコンテナ
+  db:
+    container_name: calender-app-database
+    build:
+      context: .
+      dockerfile: ./.dockerfiles/Dockerfile.database
+    env_file:
+        - .env
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    volumes:
+      - ./database_mysql/cnf/my.cnf:/etc/mysql/conf.d/my.cnf 
+      - ./database_mysql/init.d/:/docker-entrypoint-initdb.d 
+      - /var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: Asia/Tokyo
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
 
