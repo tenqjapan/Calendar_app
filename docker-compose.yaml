@@ -1,0 +1,29 @@
+services:
+
+  #フロントエンドコンテナ
+  calender-app-frontend:
+    build:
+      context: .
+      dockerfile: ./.dockerfiles/Dockerfile.frontend
+    ports:
+      - "5173:5173"
+    expose:
+      - "5173"
+    tty: true
+    volumes:
+      - ./frontend_react:/frontend_react
+      - /frontend_react/node_modules
+  
+  #バックエンドコンテナ
+  calender-app-backend:
+    build:
+      context: .
+      dockerfile: ./.dockerfiles/Dockerfile.backend
+    ports:
+      - "8173:8173"
+    expose:
+      - "8173"
+    tty: true
+    volumes:
+      - ./backend_fastapi:/backend_fastapi
+

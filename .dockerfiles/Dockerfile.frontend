@@ -1,0 +1,13 @@
+FROM node:23-alpine
+
+USER root
+
+WORKDIR /frontend_react
+
+COPY ./frontend_react/package.json .
+
+RUN npm install
+
+COPY ./frontend_react .
+
+CMD ["npm", "run", "dev", "--", "--host"]
