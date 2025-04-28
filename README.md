@@ -16,3 +16,21 @@ Docker,Git勉強会用のリポジトリ(2025/07/14,2025/07/21)
 | データベース | SQL,MySQL |
 | コンテナ | Docker |
 
+## 必要な環境変数・APIキー
+
+- .env
+
+    ```
+    FRONTEND_PORT=xxx
+    BACKEND_PORT=xxx
+    DATABASE_PORT=xxx
+
+    MYSQL_DATABASE=xxx
+    MYSQL_ROOT_PASSWORD=xxx
+    MYSQL_USER=xxx
+    MYSQL_PASSWORD=xxx
+    MYSQL_HOST=xxx
+
+    GOOGLE_CALENDER_API_KEY=xxx
+    VITE_GOOGLE_CALENDER_API_KEY=xxx
+    ```

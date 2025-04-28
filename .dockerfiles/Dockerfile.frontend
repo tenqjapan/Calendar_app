@@ -5,6 +5,7 @@ USER root
 WORKDIR /frontend_react
 
 COPY ./frontend_react/package.json .
+COPY ./frontend_react/package-lock.json .
 
 RUN npm install
 
