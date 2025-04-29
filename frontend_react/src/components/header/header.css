@@ -1,0 +1,20 @@
+.header-container {
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: aliceblue;
+    position: relative;
+}
+.app-title{
+    font-size: 18px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.page-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}

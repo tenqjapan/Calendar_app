@@ -1,4 +1,6 @@
 const GOOGLE_CALENDER_API_KEY: string = import.meta.env
   .VITE_GOOGLE_CALENDER_API_KEY;
 
-export { GOOGLE_CALENDER_API_KEY };
+const GOOGLE_CALENDER_ID: string = import.meta.env.VITE_GOOGLE_CALENDER_ID;
+
+export { GOOGLE_CALENDER_API_KEY, GOOGLE_CALENDER_ID };
