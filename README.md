@@ -53,7 +53,7 @@ Docker,Git勉強会用のリポジトリ(2025/07/14,2025/07/21)
    
        - `GOOGLE_CALENDER_API_KEY`はGoogle Cloud PlatformコンソールからAPIキーを発行して取得
        - `GOOGLE_CALENDER_ID`はGoogleカレンダーを作成して設定から取得
-   2. `.env`をこのリポジトリのルートに作成して[必要な環境変数・APIキー](#必要な環境変数・APIキー)を参照し必要な情報を記載する
+   2. `.env`をこのリポジトリのルートに作成して`必要な環境変数・APIキー`を参照し必要な情報を記載する
 
 3. Dockerコンテナを作成
    
