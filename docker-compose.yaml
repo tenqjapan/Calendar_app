@@ -19,8 +19,6 @@ services:
     volumes:
       - ./frontend_react:/frontend_react
       - frontend_node_modules:/frontend_react/node_modules
-    # environment:
-    #   VITE_GOOGLE_CALENDER_API_KEY: ${VITE_GOOGLE_CALENDER_API_KEY}
     networks:
       - default
   
