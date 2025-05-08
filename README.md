@@ -42,6 +42,39 @@ Docker,Git勉強会用のリポジトリ(2025/07/14,2025/07/21)
 ## 環境構築
 
 0. Docker,Gitを使用できる状態にしておく
+   
+   #### Githubにssh接続のために秘密鍵を登録する必要がある
+
+   (以降の操作は Linux系のシェルからのCUI操作を想定しています。MacOSの人はターミナル,WindowsOSの人はGit Bashを推奨します。WSLでUbuntuを使用している人はそれで良いです。)
+
+   1. ユーザディレクトリのルートに移動
+   
+        ```cd ~```
+
+   2. `.ssh`ディレクトリに移動する。なければ作成してから移動する
+
+        `cd .ssh` 作成する場合は `mkdir .ssh` を先に実行する
+
+   3. 鍵を生成する
+
+        ```ssh-keygen -t rsa```
+
+        このコマンドを打った後、質問が聞かれるので全て何も入力せずにEnterでOK
+
+        このコマンドによって`.ssh`ディレクトリに`id_rsa`と`id_rsa.pub`という名前のファイルが生成される
+    
+   4. `id_rsa.pub`の中身をGithubの公開鍵に登録する
+    
+        https://github.com/settings/ssh で公開鍵を設定することができる
+
+     - ファイルの中身をコピーするコマンド（直接ファイルをエディタなどで開いてGUIでコピーしてもOK）
+
+        ```pbcopy < ~/.ssh/id_rsa.pub``` (Mac)
+
+        ```clip < ~/.ssh/id_rsa.pub``` (Windows) 
+
+    [Github SSH接続 参考サイト](https://qiita.com/shizuma/items/2b2f873a0034839e47ce)
+
 
 1. 本リポジトリを任意のディレクトリにクローンする
 
