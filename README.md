@@ -10,7 +10,7 @@ Docker,Git勉強会用のリポジトリ(2025/07/14,2025/07/21)
 
 ## 使用技術
 
-|  |  |
+| 領域 | 使用技術名 |
 | ---- | ---- |
 | フロントエンド | TypeScript,React,Vite |
 | バックエンド | Python,FastAPI |
@@ -29,7 +29,7 @@ Docker,Git勉強会用のリポジトリ(2025/07/14,2025/07/21)
 
    1. ユーザディレクトリのルートに移動
    
-       ```cd ~```
+      - ```cd ~```
 
    2. `.ssh`ディレクトリに移動する。なければ作成してから移動する
 
@@ -37,33 +37,32 @@ Docker,Git勉強会用のリポジトリ(2025/07/14,2025/07/21)
 
    3. 鍵を生成する
 
-        ```ssh-keygen -t rsa```
+        - ```ssh-keygen -t rsa```
 
         このコマンドを打った後、質問が聞かれるので全て何も入力せずにEnterでOK
 
         このコマンドによって`.ssh`ディレクトリに`id_rsa`と`id_rsa.pub`という名前のファイルが生成される
     
    4. `id_rsa.pub`の中身をGithubの公開鍵に登録する
-    
-        https://github.com/settings/ssh で公開鍵を設定することができる
+      https://github.com/settings/ssh で公開鍵を設定することができる
+      
+      - ファイルの中身をコピーするコマンド（直接ファイルをエディタなどで開いてGUIでコピーしてもOK）
 
-    - ファイルの中身をコピーするコマンド（直接ファイルをエディタなどで開いてGUIでコピーしてもOK）
+        - `pbcopy < ~/.ssh/id_rsa.pub` (Mac)
 
-    ```pbcopy < ~/.ssh/id_rsa.pub``` (Mac)
+        - `clip < ~/.ssh/id_rsa.pub` (Windows)
 
-    ```clip < ~/.ssh/id_rsa.pub``` (Windows)
-
-    [Github SSH接続 参考サイト](https://qiita.com/shizuma/items/2b2f873a0034839e47ce)
+[Github SSH接続 参考サイト](https://qiita.com/shizuma/items/2b2f873a0034839e47ce)
 
 #### gitのリポジトリ関係の手順について1.2の手順は代表者が行い、3の手順は代表者の作業後にそれ以外のメンバーが行ってください
 
 **1. 本リポジトリを任意のディレクトリにクローンする**
-   
-```git clone https://github.com/shunsuke-kawata/calender_app.git```
+
+   - ```git clone https://github.com/shunsuke-kawata/calender_app.git```
 
 上記コマンドでできない人は0の手順を実行しsshキーを利用してクローンする
 
-```git clone git@github.com:shunsuke-kawata/calender_app.git```
+   - ```git clone git@github.com:shunsuke-kawata/calender_app.git```
 
 **2. リモートリポジトリのURLを変更する**
 
@@ -82,15 +81,15 @@ Docker,Git勉強会用のリポジトリ(2025/07/14,2025/07/21)
 
     ![リポジトリ新規作成](./docs_images/create_repository_img.png)
 
-1. 作成されたリポジトリのURLを確認する
+2. 作成されたリポジトリのURLを確認する
 
     下記画面の`HTTPS`もしくは`SSH`のコピー欄からコピーできる(多分どちらでも可能、使用可能な場合は`SSH`の方を使用する方が好ましい)
 
     ![リポジトリURL確認](./docs_images/repository_url_img.png)
 
-2. ローカルリポジトリのリモートリポジトリURLを確認する
+3. ローカルリポジトリのリモートリポジトリURLを確認する
     
-    `git remote -v`
+    - `git remote -v`
 
     クローン時にはおそらく以下のようになっています
 
@@ -99,26 +98,28 @@ Docker,Git勉強会用のリポジトリ(2025/07/14,2025/07/21)
     origin  git@github.com:shunsuke-kawata/calender_app.git (push)
     ```
 
-3. ローカルリポジトリのリモートリポジトリを変更する
+4. ローカルリポジトリのリモートリポジトリを変更する
     
-    ```git remote set-url origin {作成したリポジトリURL}```
+    - ```git remote set-url origin {作成したリポジトリURL}```
 
     1と同じ手順で正常にリモートリポジトリURLが変更されたか確認する
 
-4. 変更したリモートリポジトリにpushする
+5. 変更したリモートリポジトリにpushする
     
-   ```git push origin main```
+   - ```git push origin main```
 
 **3. 移行した班の代表者のリポジトリをそれ以外のメンバーがクローンする**
 
+- ```git clone {作成/移行したリポジトリURL}```
 
 **4. 環境変数を設定する**
 
    1. 環境変数に必要な値を取得する
 
         (GCPアカウント作成,カレンダー発行などの手順は割愛します。一旦なくても環境構築・アプリ起動自体はできますが下記の環境変数を設定しないとカレンダー表示ができません)
-        - `GOOGLE_CALENDER_API_KEY`はGoogle Cloud PlatformコンソールからAPIキーを発行して取得
-        -  `GOOGLE_CALENDER_ID`はGoogleカレンダーを作成して設定から取得
+    
+       - `GOOGLE_CALENDER_API_KEY`はGoogle Cloud PlatformコンソールからAPIキーを発行して取得
+       -  `GOOGLE_CALENDER_ID`はGoogleカレンダーを作成して設定から取得
   
    2. `.env`をこのリポジトリのルートに作成して、下記の`.env`を参考にして必要な情報を記載する(docker-compose.yamlがあるところに作成してください)
 
@@ -129,11 +130,11 @@ Docker,Git勉強会用のリポジトリ(2025/07/14,2025/07/21)
         BACKEND_PORT=xxx //バックエンドコンテナ用のポート番号
         DATABASE_PORT=xxx //データベースコンテナ用のポート番号
 
-        MYSQL_DATABASE=xxx //データベース名
+        MYSQL_DATABASE=xxx //データベース名(今回はcalender_dbという名前にしてください)
         MYSQL_ROOT_PASSWORD=xxx //ルートユーザーのパスワード
         MYSQL_USER=xxx //一般ユーザー名
         MYSQL_PASSWORD=xxx //一般ユーザー名のパスワード
-        MYSQL_HOST=xxx //ホストのURL(Dockerを使用する場合はコンテナ名を指定する)
+        MYSQL_HOST=xxx //ホストのURL(Dockerを使用する場合はコンテナ名を指定する、今回はcalender-app-databaseという名前にしてください)
 
         GOOGLE_CALENDER_API_KEY=xxx //GoogleカレンダーのAPIキー
         VITE_APP_GOOGLE_CALENDER_API_KEY=xxx //GoogleカレンダーのAPIキー(Viteで利用するためVITE_APP_をつけたもの)
@@ -144,14 +145,48 @@ Docker,Git勉強会用のリポジトリ(2025/07/14,2025/07/21)
 
 **5. Dockerコンテナを作成**
    
-   ```docker compose build``` Dockerイメージを作成
+1.  ```docker compose build``` Dockerイメージを作成
 
-   ```docker compose up``` Dockerコンテナの起動
+2.  ```docker compose up``` Dockerコンテナの起動
 
-   ```docker compose up --build``` 上記二つを同時実行
+ ```docker compose up --build``` 上記二つを同時実行できる（最初はイメージのために上の手順で実行してください）
 
 **6. 起動を確認する**
    
-   ```http://localhost:{FRONTEND_PORT}```でReactによるフロントエンドが起動
+   - ```http://localhost:{FRONTEND_PORT}```でReactによるフロントエンドが起動
+   - ```http://localhost:{BACKEND＿PORT}```でFastAPIによるバックエンドが起動
 
-   ```http://localhost:{BACKEND＿PORT}```でFastAPIによるバックエンドが起動
+
+## ルートのフォルダ構成
+
+- `.dockerfiles`
+  
+  フロントエンド、バックエンド、データベースのコンテナを作成するためのDockerfileが配置されている
+
+- `backend_fastapi`
+
+  バックエンドを構成するPythonファイルが配置されている
+
+- `database_mysql`
+
+  データベースの設定ファイルが配置されている
+
+- `frontend_react`
+
+  フロントエンドを構成するTypeScript,HTML,CSSなどのファイルが配置されている
+
+- `docs_images`
+
+  本READMEに使用している画像が配置されている
+
+- `.gitignore`
+
+  gitにあげたくない情報を記載できる。環境構築段階では環境変数系のファイル全てを無視するように設定している(APIキーファイルなどのファイル名を記載する)
+
+- `docker-compose.yaml`
+  
+  複数のDockerコンテナを同時に立ち上げるための設定ファイル
+
+- `README.md`
+  
+  本説明ファイル
