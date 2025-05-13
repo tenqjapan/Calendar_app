@@ -1,6 +1,7 @@
 #node_modulesのボリュームを別でマウントする
 volumes:
    frontend_node_modules:
+   mysql_data:
 services:
 
   #フロントエンドコンテナ
@@ -53,9 +54,9 @@ services:
     ports:
       - ${DATABASE_PORT}:${DATABASE_PORT}
     volumes:
-      - ./database_mysql/cnf/my.cnf:/etc/mysql/conf.d/my.cnf 
-      - ./database_mysql/init.d/:/docker-entrypoint-initdb.d 
-      - /var/lib/mysql
+      - ./database_mysql/cnf/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./database_mysql/initdb.d:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
