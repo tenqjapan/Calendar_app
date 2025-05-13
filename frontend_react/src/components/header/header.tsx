@@ -10,7 +10,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
     <div className="header-container">
       <div className="app-title">中山研カレンダー</div>
       <div className="page-title">{title}</div>
-      <HeaderIcon />
+      {/* <HeaderIcon /> */}
     </div>
   );
 };
