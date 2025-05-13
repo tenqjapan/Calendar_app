@@ -1,6 +1,8 @@
 import datetime
 from sqlalchemy import create_engine,inspect
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+
 
 import sys
 sys.path.append('../')
@@ -8,6 +10,7 @@ from config import DATABASE_PORT,MYSQL_DATABASE,MYSQL_USER,MYSQL_PASSWORD,MYSQL_
 
 # SQLAlchemyの接続用文字列
 CONNECT_STRING = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{DATABASE_PORT}/{MYSQL_DATABASE}?charset=utf8mb4"
+Base = declarative_base()
 
 #データベースに接続するためのセッションを作成する
 def create_connect_session():

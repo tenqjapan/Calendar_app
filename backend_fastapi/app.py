@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
-import models.common
+import sys
+sys.path.append('../')
+from routes.users_endpoint import users_endpoint
+from routes.auth_endpoint import auth_endpoint
 
 app = FastAPI(
     title="Calendar App Backend",
@@ -15,12 +18,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(users_endpoint, tags=["users"])
+app.include_router(auth_endpoint, tags=["auth"])
+
 @app.get("/")
-async def root():
+def root():    
     return {"root":"Calendar App Backend"}
 
 @app.post("/")
-async def root():
+def root():
     return {"root":"Calendar App Backend"}
 
 if __name__ == "__main__":
