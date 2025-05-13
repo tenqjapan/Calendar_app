@@ -1,12 +1,13 @@
-import { GOOGLE_CALENDER_API_KEY, GOOGLE_CALENDER_ID } from "../../config";
+interface CalenderProps {
+  calenderId: string;
+}
 
-const Calender: React.FC = () => {
-  console.log(GOOGLE_CALENDER_API_KEY);
-  console.log(GOOGLE_CALENDER_ID);
+const Calender: React.FC<CalenderProps> = ({ calenderId }) => {
+  console.log(calenderId);
   return (
     <>
       <iframe
-        src={`https://calendar.google.com/calendar/embed?src=${GOOGLE_CALENDER_ID}&ctz=Asia%2FTokyo`}
+        src={`https://calendar.google.com/calendar/embed?src=${calenderId}&ctz=Asia%2FTokyo`}
         width="800"
         height="600"
       ></iframe>
